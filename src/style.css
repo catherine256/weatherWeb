@@ -1,0 +1,62 @@
+body {
+    font-family: sans-serif;
+    background-color: gainsboro;
+    margin-left: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    color: blueviolet;
+    top: 2%;
+  }
+  .row {
+    color: blue;
+  }
+  .active {
+    color: purple;
+  }
+  h2 {
+    margin-left: 10px;
+  }
+  h4 {
+    margin-left: 15px;
+    color: blue;
+  }
+  h5 {
+    margin-left: 20px;
+    color: orange;
+  }
+  p {
+    margin-left: 25px;
+    color: orange;
+  }
+  span {
+    color: blue;
+  }
+  .card {
+    background-color: rgb(223, 235, 232);
+  }
+  footer {
+    text-align: center;
+  }
+  .prep {
+    margin-left: 50%;
+    top: 30%;
+  }
+  #today {
+    color: black;
+  }
+  #cel,
+  #fer {
+    cursor: pointer;
+    color: #000;
+    font-size: 30px;
+  }
+  #cel:hover,
+  #fer:hover {
+    color: blue;
+    text-decoration: underline;
+  }
+  #temp {
+    font-size: 40px;
+  }
