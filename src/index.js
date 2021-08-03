@@ -1,69 +1,82 @@
-let now = new Date();
-let date = document.querySelector("#today");
-date.innerHTML = now;
+  function formatDate(timestamp) {
+      //calculate date
+      let date = new Date(timestamp);
+      let hours = date.getHours();
+      if (hours < 10) {
+        hours = `0${hours}`;
+    }
+      let minutes = date.getMinutes();
+      if (minutes < 10) {
+          minutes = `0${minutes}`;
+      }
+      let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+      let day = days[date.getDay()];
+      return `${day} ${hours}:${minutes}`
+  }
+  
+  
 
-function celToF() {
-  let cTemp = document.querySelector("#temp");
-  let temp = cTemp.innerHTML;
-  cTemp.innerHTML = (temp * 9) / 5 + 32;
-}
-let cels = document.querySelector("#cel");
-cels.addEventListener("click", ferToC);
+  
+  function showWeather(response) {
+    celsTemp = response.data.main.temp;
+  let tempElement = document.querySelector("#temperature")
+  tempElement.innerHTML = Math.round(celsTemp);
+  let cityElement = document.querySelector("#city")
+  cityElement.innerHTML = response.data.name;
+  let desElement = document.querySelector("#description")
+  desElement.innerHTML = response.data.weather[0].description;
+  let humElement = document.querySelector("#humidity")
+  humElement.innerHTML = response.data.main.humidity;
+  let windElement = document.querySelector("#wind");
 
-function ferToC() {
-  let fToCel = document.querySelector("#temp");
-  let temp = fToCel.innerHTML;
-  fToCel.innerHTML = ((temp - 32) * 5) / 9;
-}
-
-let fers = document.querySelector("#fer");
-fers.addEventListener("click", celToF);
-
-function showWeather(response) {
-  console.log(response);
-  let outputCity = document.querySelector("#country");
-  outputCity.innerHTML = response.data.name;
-
-  let outputTemp = document.querySelector("#temp");
-  outputTemp.innerHTML = Math.round(response.data.main.temp);
-
-  let outputHumidity = document.querySelector("#humidity");
-  outputHumidity.innerHTML = Math.round(response.data.main.humidity);
-
-  let outputWind = document.querySelector("#windSpeed");
-  outputWind.innerHTML = Math.round(response.data.wind.speed);
-
-  let outputCondition = document.querySelector("#condition");
-  outputCondition.innerHTML = response.data.weather[0].description;
-}
-
-function getCity(city) {
-  let apiKey = "8b9afaa73ea20e1e994a07480018c73c";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
-  axios.get(apiUrl).then(showWeather);
+  windElement.innerHTML = Math.round(response.data.wind.speed);
+  let dateElement = document.querySelector("#date")
+  dateElement.innerHTML = formatDate(response.data.dt * 1000);
+  let imgElement = document.querySelector("#icon")
+  imgElement.setAttribute("src", `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+  imgElement.setAttribute("alt", response.data.weather[0].description);
 }
 
-function inputSubmit(event) {
-  event.preventDefault();
-  let city = document.querySelector("#search-input").value;
-  getCity(city);
-}
-let form = document.querySelector("#form-input");
-form.addEventListener("submit", inputSubmit);
+function search(city) {
+    let apiKey = "8b9afaa73ea20e1e994a07480018c73c";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
+    axios.get(apiUrl).then(showWeather);
 
-function currentLocation(position) {
-  console.log(position);
-  let apiKey = "bc77907b0e11a419a6d57d1e95e42bea";
-  let lat = position.coords.latitude;
-  let lon = position.coords.longitude;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
-  axios.get(apiUrl).then(showWeather);
 }
 
-function searchCurrrentLocation(event) {
-  event.preventDefault();
-  navigator.geolocation.getCurrentPosition(currentLocation);
+function handleSubmit(event) {
+    event.preventDefault();
+    let cityInput = document.querySelector("#city-input");
+    search(cityInput.value)
 }
 
-let button = document.querySelector("#current");
-button.addEventListener("click", searchCurrrentLocation);
+function displayFar(event) {
+    event.preventDefault();
+    //remove  link from C
+    celLink.classList.remove("active");
+    farLink.classList.add("active")
+    let farTempe = document.querySelector("#temperature")
+    let farTemp = (celsTemp * 9) / 5 + 32;
+    farTempe.innerHTML = Math.round(farTemp);
+}
+
+function displayCel(event) {
+    event.preventDefault();
+    //add link to F
+    celLink.classList.add("active");
+    farLink.classList.remove("active")
+    let farTempe = document.querySelector("#temperature")
+    farTempe.innerHTML = Math.round(celsTemp);
+}
+search("Uganda")
+  let celsTemp = null;
+
+  let form = document.querySelector("#search-form");
+  form.addEventListener("submit", handleSubmit);
+
+  let farLink = document.querySelector("#far-link");
+  farLink.addEventListener('click', displayFar);
+
+  let celLink = document.querySelector("#cel-link");
+  celLink.addEventListener('click', displayCel);
+  

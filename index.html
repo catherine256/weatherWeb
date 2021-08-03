@@ -1,8 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Weather app</title>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=
+  , initial-scale=1.0"
+    />
+    <title>Weather App</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -10,119 +17,57 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-
     <link rel="stylesheet" href="./src/style.css" />
   </head>
   <body>
-    <div id="app">
-      <h1>Weather App</h1>
-    </div>
-    <br />
-    <br />
-    <form class="form-inline" id="form-input">
-      <div class="row">
-        <div class="col-7">
-          <input
-            class="form-control mr-sm-2"
-            id="search-input"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-        </div>
-        <div class="col">
-          <button class="btn btn-outline-success" type="submit" id="submit">
-            Search
-          </button>
-        </div>
-        <div class="col">
-          <button class="btn btn-success" type="submit" id="current">
-            Current
-          </button>
-        </div>
-      </div>
-    </form>
-    <br />
-
-    <div id="kla">
-      <h2 id="country">Kampala</h2>
-      <h4>Today</h4>
-      <h5 id="today">Saturday 6:30 pm</h5>
-      <p>
-        <span id="condition">Sunny Cloudy </span><br />⛅
-        <span id="temp">32 </span><span id="cel">°C </span> |
-        <span id="fer">°F </span>
-      </p>
-    </div>
-    <div class="prep">
-      Humidity: <span id="humidity">4</span>% <br />
-      Wind Speed: <span id="windSpeed">2</span>km/h
-    </div>
-    <br />
-    <h6>5 DAYS FORECAST</h6>
-    <div class="row">
-      <div class="col-sm-2">
-        <div class="card">
-          <div class="card-body">
-            <h6 class="card-title">SUN</h6>
-            <p class="card-text">
-              🌤 <br />
-              <span>25°c </span>
-            </p>
+    <div class="container">
+      <div class="weather-app-wrapper">
+        <div class="weather-app">
+          <form id="search-form" class="mb-3">
+            <div class="row">
+              <div class="col-md-9">
+                <input
+                  type="search"
+                  class="form-control"
+                  placeholder="Enter city ..." id="city-input"
+                />
+              </div>
+              <div class="col-md-3">
+                <input type="submit" value="search" class="btn btn-primary w-100"/>
+              </div>
+            </div>
+          </form>
+          <div class="overview">
+            <h1 id="city"></h1>
+            <ul>
+              <li>Last Updated: <span id="date"></span></li>
+              <li id="description"></li>
+            </ul>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="clearfix weather-temperature">
+                <img src="" class="float-left" alt="" id="icon" />
+                <div class="float-left">
+                  <strong id="temperature"></strong>
+                  <span class="units"> <a href="#" id="cel-link" class="active">°C</a> | <a href="#" id="far-link">°F</a></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-6">
+              <ul>
+                <li>Humidity: <span id="humidity">73</span>%</li>
+                <li>wind: <span id="wind"></span> km/hr</li>
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-sm-2">
-        <div class="card">
-          <div class="card-body">
-            <h6 class="card-title">MON</h6>
-            <p class="card-text">
-              🌦 <br />
-              <span>18°c </span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-2">
-        <div class="card">
-          <div class="card-body">
-            <h6 class="card-title">TUE</h6>
-            <p class="card-text">
-              🌩 <br />
-              <span>10°c </span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-2">
-        <div class="card">
-          <div class="card-body">
-            <h6 class="card-title">THUR</h6>
-            <p class="card-text">
-              🌧 <br />
-              <span>22</span>
-            </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm-2">
-        <div class="card">
-          <div class="card-body">
-            <h6 class="card-title">FRI</h6>
-            <p class="card-text">
-              🌤 <br />
-              <span>25°c </span>
-            </p>
-          </div>
-        </div>
+        <small>
+          <a href="https://github.com/catherine256/weatherWeb" target="_blank"> Open-source code</a> by Nakyanzi
+          Catheriine
+        </small>
       </div>
     </div>
-    <br />
-    <hr />
-    <footer><em>Coded by Nakyanzi Catheriine</em></footer>
-    Link to Github Repository<a href="https://github.com/catherine256/weatherWeb"><button class="btn btn-success">Git Repository</button></a>
-
     <script src="./src/index.js"></script>
   </body>
 </html>

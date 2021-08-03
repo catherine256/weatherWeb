@@ -1,62 +1,66 @@
-body {
-    font-family: sans-serif;
-    background-color: gainsboro;
-    margin-left: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-    color: blueviolet;
-    top: 2%;
-  }
-  .row {
-    color: blue;
-  }
-  .active {
-    color: purple;
-  }
-  h2 {
-    margin-left: 10px;
-  }
-  h4 {
-    margin-left: 15px;
-    color: blue;
-  }
-  h5 {
-    margin-left: 20px;
-    color: orange;
-  }
-  p {
-    margin-left: 25px;
-    color: orange;
-  }
-  span {
-    color: blue;
-  }
-  .card {
-    background-color: rgb(223, 235, 232);
-  }
-  footer {
-    text-align: center;
-  }
-  .prep {
-    margin-left: 50%;
-    top: 30%;
-  }
-  #today {
-    color: black;
-  }
-  #cel,
-  #fer {
-    cursor: pointer;
-    color: #000;
-    font-size: 30px;
-  }
-  #cel:hover,
-  #fer:hover {
-    color: blue;
-    text-decoration: underline;
-  }
-  #temp {
-    font-size: 40px;
-  }
+body{
+    font-family: Arial, sans-serif;
+}
+.weather-app-wrapper {
+    max-width: 600px;
+    margin: 30px auto;
+}
+
+.weather-app{
+
+    padding: 20px;
+    border: 1px solid #dadde1;
+    border-radius: 5px;
+}
+h1{
+    color: rgb(135, 135,135);
+    font-size: 24px;
+    font-weight: 100;
+    line-height: 28px;
+    margin-bottom: 0;
+}
+ul{
+    margin: 0;
+    padding: 0;
+}
+li{
+    list-style: none;
+    color: rgb(135, 135,135);
+    font-size: 16px;
+    font-weight: 100;
+    line-height: 19px;
+}
+.overview{
+    margin-bottom: 20px;
+}
+.weather-temperature img{
+    margin-right: 10px;
+    height: 64px;
+    width: 64px;
+}
+.weather-temperature strong{
+    color: rgb(33, 33,33);
+    font-size: 64px;
+    line-height: 1;
+    font-weight: 400;
+
+}
+.weather-temperature .units{
+    position: relative;
+    font-size: 16px;
+    top: -34px;
+
+}
+.weather-temperature .active{
+    color: rgb(33, 33,33);
+    cursor: default;
+    text-decoration: none;
+
+}
+.weather-temperature .active:hover{
+    text-decoration: none;
+
+}
+a {
+    text-decoration: none;
+}
